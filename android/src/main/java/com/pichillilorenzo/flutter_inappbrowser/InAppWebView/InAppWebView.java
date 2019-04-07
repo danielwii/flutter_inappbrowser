@@ -189,6 +189,10 @@ public class InAppWebView extends WebView {
     else
       settings.setTextZoom(100);
 
+    // https://stackoverflow.com/questions/28626433/android-webview-blocks-redirect-from-https-to-http
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+    }
   }
 
   public void loadUrl(String url, MethodChannel.Result result) {
